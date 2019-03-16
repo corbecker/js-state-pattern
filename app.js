@@ -28,7 +28,7 @@ const homeState = function(page) {
 // About state
 const aboutState = function(page) {
   document.querySelector('#heading').textContent = 'About Us';
-  DocumentType.querySelector('#content').innerHTML = `
+  document.querySelector('#content').innerHTML = `
     <p>This is the about page.</p>
   `;
 }
@@ -36,7 +36,7 @@ const aboutState = function(page) {
 // Contact state
 const contactState = function(page) {
   document.querySelector('#heading').textContent = 'Contact Us';
-  DocumentType.querySelector('#content').innerHTML = `
+  document.querySelector('#content').innerHTML = `
   <form>
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
@@ -57,8 +57,31 @@ const contactState = function(page) {
 };
 
 // instantiate page state
-
 const page =  new PageState();
 
 // Init first state
 page.init();
+
+// UI vars
+const home = document.getElementById('home'),
+      about = document.getElementById('about'),
+      contact = document.getElementById('contact');
+
+// Event listeners
+home.addEventListener('click', (e) => {
+  page.change(new homeState);
+
+  e.preventDefault();
+});
+
+about.addEventListener('click', (e) => {
+  page.change(new aboutState);
+
+  e.preventDefault();
+});
+
+contact.addEventListener('click', (e) => {
+  page.change(new contactState);
+
+  e.preventDefault();
+});
